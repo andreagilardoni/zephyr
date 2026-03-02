@@ -18,7 +18,7 @@
 #include <zephyr/sys/util.h>
 #include <zephyr/toolchain.h>
 
-#ifdef CONFIG_LLEXT
+#ifdef CONFIG_LLEXT_EXPORT_SYMS
 #include <zephyr/llext/symbol.h>
 #endif
 

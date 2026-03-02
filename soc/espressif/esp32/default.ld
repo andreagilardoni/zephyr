@@ -200,7 +200,7 @@ SECTIONS
 
   #include <zephyr/linker/rel-sections.ld>
 
-#ifdef CONFIG_LLEXT
+#ifdef CONFIG_LLEXT_EXPORT_SYMS
   #include <zephyr/linker/llext-sections.ld>
 #endif
 
