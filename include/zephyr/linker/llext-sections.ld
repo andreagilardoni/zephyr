@@ -11,7 +11,11 @@
 	 * This section is used for mapping that symbol only and is not
 	 * to be included in the final binary.
 	 */
+#if defined(CONFIG_LLEXT)
 	SECTION_PROLOGUE(llext_no_syscall_impl, 0 (COPY), )
+#elif defined(CONFIG_LLEXT_EDK_EXPORT_SYMS)
+	SECTION_PROLOGUE(llext_no_syscall_impl, 0 (INFO), )
+#endif
 	{
 	  *(llext_no_syscall_impl)
 	}

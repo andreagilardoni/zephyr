@@ -40,8 +40,15 @@
 	ITERABLE_SECTION_ROM(zbus_channel_observation, Z_LINK_ITERABLE_SUBALIGN)
 #endif /* CONFIG_ZBUS */
 
-#ifdef CONFIG_LLEXT
+#if defined(CONFIG_LLEXT)
 	ITERABLE_SECTION_ROM(llext_const_symbol, Z_LINK_ITERABLE_SUBALIGN)
+#elif defined(CONFIG_LLEXT_EDK_EXPORT_SYMS)
+	SECTION_PROLOGUE(llext_const_symbol, 0 (INFO),)
+	{
+		PLACE_SYMBOL_HERE(_llext_const_symbol_list_start);
+		KEEP(*(SORT(._llext_const_symbol.static.*)))
+		PLACE_SYMBOL_HERE(_llext_const_symbol_list_end);
+	}
 #endif /* CONFIG_LLEXT */
 
 	SECTION_DATA_PROLOGUE(symbol_to_keep,,)
