@@ -142,7 +142,7 @@ struct llext_symtable {
 		.name = __llext_sym_name_ ## sym_name,				\
 		.addr = (const void *)&sym_ident,				\
 	}
-#elif defined(CONFIG_LLEXT)
+#elif defined(CONFIG_LLEXT_EXPORT_SYMS)
 /* LLEXT application: export symbols */
 #define Z_EXPORT_SYMBOL_NAMED(sym_ident, sym_name)				\
 	static const STRUCT_SECTION_ITERABLE(llext_const_symbol,		\
@@ -161,7 +161,7 @@ struct llext_symtable {
  * Version of @ref EXPORT_SYMBOL that allows the user to specify a custom name
  * for the exported symbol.
  *
- * When @c CONFIG_LLEXT is not enabled, this macro is a no-op.
+ * When @c CONFIG_LLEXT_EXPORT_SYMS is not enabled, this macro is a no-op.
  *
  * @param sym_ident Symbol to export
  * @param sym_name Name associated with the symbol
@@ -176,7 +176,7 @@ struct llext_symtable {
  * and address of the symbol to a table of symbols that may be referenced
  * by extensions or by the base image, depending on the current build type.
  *
- * When @c CONFIG_LLEXT is not enabled, this macro is a no-op.
+ * When @c CONFIG_LLEXT_EXPORT_SYMS is not enabled, this macro is a no-op.
  *
  * @param x Symbol to export
  */

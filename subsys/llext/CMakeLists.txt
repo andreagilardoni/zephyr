@@ -22,4 +22,17 @@ if(CONFIG_LLEXT)
   if(CONFIG_RISCV AND CONFIG_USERSPACE)
 	message(WARNING "Running LLEXT extensions from user-space threads on RISC-V is not supported!")
   endif()
+elseif(CONFIG_LLEXT_EDK_EXPORT_SYMS)
+  message(WARNING "building export syms with CONFIG_LLEXT_EDK_EXPORT_SYMS")
+
+  zephyr_syscall_header(${ZEPHYR_BASE}/include/zephyr/llext/llext.h)
+
+  zephyr_library()
+
+  # For strnlen()
+  zephyr_library_compile_definitions(-D_POSIX_C_SOURCE=200809L)
+
+  zephyr_library_sources(
+		llext_export.c
+	)
 endif()

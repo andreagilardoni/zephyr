@@ -212,4 +212,17 @@ config LLEXT_EDK_USERSPACE_ONLY
 	  to be used by userspace only extensions, this option will make EDK stubs
 	  not contain the routing code, and only generate the userspace one.
 
+config LLEXT_EDK_EXPORT_SYMS
+	bool "Enable symbol export"
+	default n
+	help
+	  Enable export of symbols even if LLEXT=n. This allows to link extensions at compile time
+	  without the need of the entire LLEXT runtime. In this case symbols will be excluded from
+	  the final binary through the linker script, but still provide placeholders for the
+	  symbol names and address
+
 endif
+
+config LLEXT_EXPORT_SYMS
+	bool "Enable symbol export"
+	default y if LLEXT || LLEXT_EDK_EXPORT_SYMS
